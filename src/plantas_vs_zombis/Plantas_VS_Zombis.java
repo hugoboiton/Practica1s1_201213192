@@ -16,7 +16,9 @@ public class Plantas_VS_Zombis {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("asdfasdfa");
+      MenuJuego men =new MenuJuego();
+      men.setVisible(true);
+      
     }
     
 }
