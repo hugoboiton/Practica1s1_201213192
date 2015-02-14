@@ -86,6 +86,11 @@ public class MenuJuego extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 0, 0));
         jButton3.setText("Eliminar datos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 250, -1));
 
         jButton5.setBackground(new java.awt.Color(0, 0, 0));
@@ -163,6 +168,12 @@ public class MenuJuego extends javax.swing.JFrame {
         p.setVisible(true);
         this.hide();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ListadoPersonajes nes=new ListadoPersonajes();
+        nes.setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
