@@ -9,17 +9,22 @@ package plantas_vs_zombis;
  *
  * @author HUGO
  */
-public class NuevoCampo extends javax.swing.JFrame {
 
+public class NuevoCampo extends javax.swing.JFrame {
+static ListaJugador lista1;
+NodoJugador aux;
     /**
      * Creates new form NuevoCampo
      */
-    String Jugador;
+    String TipoJugador;
+    String NombreJ;
+  
     public NuevoCampo() {
         initComponents();
     }
-    public NuevoCampo(String nom) {
-        this.Jugador=nom;
+    public NuevoCampo(String nom,String NomJ) {
+        this.TipoJugador=nom;
+        this.NombreJ=NomJ;
         initComponents();
     }
     /**
@@ -31,6 +36,7 @@ public class NuevoCampo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jopAvisos = new javax.swing.JOptionPane();
         titulo = new javax.swing.JLabel();
         titulo1 = new javax.swing.JLabel();
         titulo2 = new javax.swing.JLabel();
@@ -89,18 +95,20 @@ public class NuevoCampo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        DatosJugador dat =new DatosJugador(Jugador);
+        DatosJugador dat =new DatosJugador(TipoJugador,NombreJ);
         dat.setVisible(true);
         this.hide();
        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        aux=lista1.BuscarPunteroLista(NombreJ);
         String nombre="";
         String cam="";
         nombre=campo.getText();
         cam=info.getText();
-        
+        aux.apuntadorJugadorDatos.insertar(nombre, cam);
+         jopAvisos.showMessageDialog(this, "Nuevo campo Ingresado exitosamente");
         campo.setText("");
         info.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -146,6 +154,7 @@ public class NuevoCampo extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JOptionPane jopAvisos;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo1;
     private javax.swing.JLabel titulo2;

@@ -14,15 +14,19 @@ public class DatosJugador extends javax.swing.JFrame {
     /**
      * Creates new form DatosJugador
      */
-    
+      public static ListaJugador lista1;
+      NodoJugador aux;
     String JugadorT;
+    String NomJ;
     public DatosJugador() {
         initComponents();
     }
-public DatosJugador(String nombre) {
+    public DatosJugador(String nombre,String o) {
         initComponents();
         this.JugadorT=nombre;
+        this.NomJ=o;
         titulo.setText(nombre);
+        ver();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,6 +37,7 @@ public DatosJugador(String nombre) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jopAvisos = new javax.swing.JOptionPane();
         titulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -112,22 +117,35 @@ public DatosJugador(String nombre) {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void ver(){
+    if(!"1".equals(NomJ)){
+     aux=lista1.BuscarPunteroLista(NomJ);
+     nombre.setText(NomJ);
+     cantidad.setText(aux.getCantidad());
+    }
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String jugador=nombre.getText();
+       NomJ=nombre.getText();
        String a =cantidad.getText();
-      int  cantidad=Integer.parseInt(a);
+       lista1.insertar(JugadorT,NomJ ,a);
+       
+        jopAvisos.showMessageDialog(this, "Datos ingresado Exitosamente");
+       lista1.imprimir();
+     
       
      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     NuevoCampo campo=new NuevoCampo( JugadorT);
+   
+     NuevoCampo.lista1=lista1;   
+     NuevoCampo campo=new NuevoCampo( JugadorT,NomJ);
      campo.setVisible(true);
      this.hide();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        MenuJuego.lista1=lista1;
         MenuJuego m= new MenuJuego();
         m.setVisible(true);
         this.hide();
@@ -179,6 +197,7 @@ public DatosJugador(String nombre) {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JOptionPane jopAvisos;
     private javax.swing.JTextField nombre;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables

@@ -19,24 +19,49 @@ public class ListaJugador {
   public  Boolean vacio(){
         return primero==null;
              }
-  public void insertar( String Jugador){
+  public void insertar( String Jugador,String nom , String cat){
   
   if (vacio()){
-  primero=ultimo= new NodoJugador(Jugador);
+  primero=ultimo= new NodoJugador(Jugador, nom,cat);
   }else{
   
-   ultimo=ultimo.siguiente= new NodoJugador(Jugador);
+   ultimo=ultimo.siguiente= new NodoJugador(Jugador,nom,cat);
   }    
   
+  }
+  
+  public NodoJugador BuscarPunteroLista(String JugadorB){
+  NodoJugador aux;
+  aux=primero;
+  while (aux!=null){
+  if(aux.getNombre().equals(JugadorB)){
+      
+  break;
+  }else{
+  aux=aux.siguiente;
+  }
+  
+  }
+      
+      return aux;
   }
   public void imprimir(){
   NodoJugador aux;
   aux=primero;
-  
+
+  if (!vacio()){
   while(aux!=null){
-  System.out.println(aux.getJugador());
+  System.out.print(aux.getJugador());
+  System.out.print("  ");
+  System.out.print(aux.getNombre());
+  System.out.println();
+  aux.apuntadorJugadorDatos.imprimir();
   aux=aux.siguiente;
   }
-  
+  System.out.println("-------------");
+  }else{
+      System.out.println("lista vacia XD");
+  System.out.println("-------------");
+  }
   }
 }

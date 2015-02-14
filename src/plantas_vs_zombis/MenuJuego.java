@@ -14,8 +14,11 @@ public class MenuJuego extends javax.swing.JFrame {
     /**
      * Creates new form MenuJuego
      */
+     public static ListaJugador lista1;
+             
     public MenuJuego() {
         initComponents();
+        lista1.imprimir();
     }
 
     /**
@@ -135,7 +138,8 @@ public class MenuJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DatosJugador p=new DatosJugador("Plantas");
+        DatosJugador.lista1=lista1;
+        DatosJugador p=new DatosJugador("Plantas","1");
         p.setVisible(true);
         this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -154,7 +158,8 @@ public class MenuJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         DatosJugador p=new DatosJugador("Zombies");
+        DatosJugador.lista1=lista1;
+        DatosJugador p=new DatosJugador("Zombies","1");
         p.setVisible(true);
         this.hide();
     }//GEN-LAST:event_jButton2ActionPerformed

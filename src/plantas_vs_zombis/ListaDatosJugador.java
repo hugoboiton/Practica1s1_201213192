@@ -14,9 +14,38 @@ public class ListaDatosJugador {
     NodoDatosJugador ultimo;
     
     public ListaDatosJugador(){
+    primero=ultimo=null;
     
+    }
+    public Boolean vacio(){
+    return primero==null;
+    }
+    
+    public void insertar(String nom,String inf){
+    if (vacio()){
+    
+    primero=ultimo=new NodoDatosJugador(nom , inf);
+    }else{
+    
+    ultimo=ultimo.Siguiente=new NodoDatosJugador(nom , inf);
+    }
     
     }
     
+     public void imprimir(){
+  NodoDatosJugador aux;
+  aux=primero;
+  if(!vacio()){
+  while(aux!=null){
+  System.out.println(aux.getInformacionCampo());
+  aux=aux.Siguiente;
+  }
+  System.out.println("-------");
+  }
+  else{
+  System.out.println("NO hay datos del nodo");
+  System.out.println("-------");
+  }
+  }
     
 }
