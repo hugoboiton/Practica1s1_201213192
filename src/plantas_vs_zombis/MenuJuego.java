@@ -5,6 +5,10 @@
  */
 package plantas_vs_zombis;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
 /**
  *
  * @author HUGO
@@ -155,9 +159,23 @@ public class MenuJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+      File ext = new File("re1.gif");                    
+        Graphviz g = lista1.Draw();
+        g.writeGraphToFile(g.getGraph(g.getDotSource(), "gif"), ext);
+        
+        abrirarchivo("re1.gif");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+public void abrirarchivo(String archivo){
 
+     try {
+
+            File objetofile = new File (archivo);
+            Desktop.getDesktop().open(objetofile);
+
+     }catch (IOException ex) {
+
+            System.out.println(ex);}
+}
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
       System.exit(0);
     }//GEN-LAST:event_jButton6ActionPerformed

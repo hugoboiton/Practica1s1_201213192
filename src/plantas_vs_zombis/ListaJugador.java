@@ -12,6 +12,7 @@ package plantas_vs_zombis;
 public class ListaJugador {
     NodoJugador primero;
     NodoJugador ultimo;
+    
     public ListaJugador(){
     primero =ultimo=null;
     
@@ -64,4 +65,50 @@ public class ListaJugador {
   System.out.println("-------------");
   }
   }
+   public Graphviz Draw()
+    {
+        Graphviz g = new Graphviz();
+        g.addln(g.start_graph());
+        g.addln("rankdir = LR;");
+        NodoJugador n = primero;
+        String c=primero.getJugador()+"__"+primero.getNombre();
+        g.add(""+c);
+        NodoDatosJugador aux=primero.apuntadorJugadorDatos.primero;
+        String b=aux.getNombreCampo();
+        g.add("->"+b);
+       aux= aux.Siguiente;
+        while (aux!=null){
+            b=aux.getNombreCampo();
+       g.add(" ->"+b);
+        aux=  aux.Siguiente;
+       }
+       g.add(";"+c);
+        
+        n = primero.siguiente;
+        while(n!= null)
+        {
+            c=n.getJugador()+"__"+n.getNombre();
+            g.add(" -> " +c);
+         aux=n.apuntadorJugadorDatos.primero;
+            if(aux!=null){
+        
+         b=aux.getNombreCampo();
+         g.add("->"+b);
+         aux= aux.Siguiente;
+        while (aux!=null){
+            b=aux.getNombreCampo();
+       g.add(" ->"+b);
+        aux=  aux.Siguiente;
+       }
+       g.add(";"+c);
+            }
+            n = n.siguiente;
+           
+        }
+        g.add(";");        
+        
+        g.addln(g.end_graph());
+        
+        return g;
+    }
 }

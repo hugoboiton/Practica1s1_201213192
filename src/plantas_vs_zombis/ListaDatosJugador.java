@@ -47,5 +47,25 @@ public class ListaDatosJugador {
   System.out.println("-------");
   }
   }
+       public String imprimirG(){
+  NodoDatosJugador aux;
+  aux=primero;
+  String cadena="";
+  cadena=primero.getInformacionCampo()+"__"+primero.getInformacionCampo();
+  if(!vacio()){
+  while(aux!=null){
+  System.out.println();
+  
+  cadena=cadena+""+aux.getNombreCampo()+"__"+aux.getInformacionCampo()+"->";
+  aux=aux.Siguiente;
+  }
+  System.out.println("-------");
+  }
+  else{
+  System.out.println("NO hay datos del nodo");
+  System.out.println("-------");
+  }
+    return cadena; 
+}
     
 }
