@@ -5,7 +5,9 @@
  */
 package plantas_vs_zombis;
 
+
 import java.awt.GridLayout;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,9 +19,38 @@ public class ListadoPersonajes extends javax.swing.JFrame {
      * Creates new form ListadoPersonajes
      */
     int q=1;
-    public ListadoPersonajes() {
+    String a;
+    String p="";
+     public ListadoPersonajes() {
+        initComponents();
+        
+    }
+    public ListadoPersonajes(String a) {
         initComponents();
         Contenedor.setLayout(new GridLayout(0,1));
+        this.a=a;
+        
+        cargarBox();
+    }
+    public void cargarBox(){
+    personajes.removeAllItems();
+    ataques.removeAllItems();
+    String[] nombres;
+    if (a.equals("plantas")){
+    nombres=new String []{"p1","p2","p3","p4","p5","p6","p7","p8","p9"}; 
+    p="Plantas";
+    }else{
+    nombres=new String []{"z1","z2","z3","z4","z5","z6","z7","z8","z9"}; 
+    p="Zombies";
+    }
+    String [] t=new String [] {"Disparo","Directo"};
+    for(int i =0;i<nombres.length;i++){
+    personajes.addItem(nombres[i]);
+    }
+    for(int j=0;j<t.length;j++){
+    ataques.addItem(t[j]);
+    }
+    
     }
 
     /**
@@ -33,8 +64,26 @@ public class ListadoPersonajes extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        imagen = new javax.swing.JLabel();
+        personajes = new javax.swing.JComboBox();
+        Pataque = new javax.swing.JTextField();
+        ptdef = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        ataques = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Contenedor = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,35 +99,179 @@ public class ListadoPersonajes extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("Lista de personajes");
+
+        jLabel2.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("Puntos de ataque");
+
+        jLabel3.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setText("Puntos de Defensa");
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imagen, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imagen, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+
+        personajes.setBackground(new java.awt.Color(51, 51, 51));
+        personajes.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        personajes.setForeground(new java.awt.Color(255, 0, 0));
+        personajes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        personajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personajesActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4.setText("Tipo de Ataque");
+
+        ataques.setBackground(new java.awt.Color(102, 102, 102));
+        ataques.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        ataques.setForeground(new java.awt.Color(225, 0, 0));
+        ataques.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel5.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5.setText("Imagen");
+
+        jLabel6.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setText("Nombre");
+
+        jLabel7.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel7.setText("Puntos Ataque");
+
+        jLabel8.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel8.setText("Puntos Defensa");
+
+        jLabel9.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel9.setText("Tipo Ataque");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ptdef, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(personajes, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(145, 145, 145)
+                                .addComponent(jLabel8))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(207, 207, 207)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Pataque, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(ataques, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel5)
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel6)
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel7)))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(21, 21, 21))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(Pataque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ptdef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(ataques, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(personajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addGap(92, 92, 92))
         );
+
+        Contenedor.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 51)));
 
         javax.swing.GroupLayout ContenedorLayout = new javax.swing.GroupLayout(Contenedor);
         Contenedor.setLayout(ContenedorLayout);
         ContenedorLayout.setHorizontalGroup(
             ContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGap(0, 937, Short.MAX_VALUE)
         );
         ContenedorLayout.setVerticalGroup(
             ContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 311, Short.MAX_VALUE)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(Contenedor);
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,9 +283,9 @@ public class ListadoPersonajes extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -100,15 +293,29 @@ public class ListadoPersonajes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        String a =Integer.toString(q);
+       String nom=(String)personajes.getSelectedItem();
+       System.out.println(nom);
+       String ataque=Pataque.getText();
+       String defen=ptdef.getText();
+       String tipo=(String)ataques.getSelectedItem();
        
-       
-       Panel y=new Panel();
+       Panel y=new Panel(nom,ataque,defen,tipo,p);
        y.setBounds(10,10, 50, 50);
        Contenedor.add(y);
        Contenedor.setLayout(new GridLayout(q,1));
        Contenedor.updateUI();
        q++;
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void personajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personajesActionPerformed
+      String a= (String) personajes.getSelectedItem();
+       String foto=a+".jpg";
+      System.out.println("src/ImajenesJuego/"+p+"/"+foto);
+    
+       ImageIcon per = new ImageIcon("src/ImajenesJuego/"+p+"/"+foto);
+   
+          imagen.setIcon(per);
+    }//GEN-LAST:event_personajesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,8 +355,26 @@ public class ListadoPersonajes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Contenedor;
+    private javax.swing.JTextField Pataque;
+    private javax.swing.JComboBox ataques;
+    private javax.swing.JLabel imagen;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox personajes;
+    private javax.swing.JTextField ptdef;
     // End of variables declaration//GEN-END:variables
 }

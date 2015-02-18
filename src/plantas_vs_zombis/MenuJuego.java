@@ -188,7 +188,7 @@ public void abrirarchivo(String archivo){
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ListadoPersonajes nes=new ListadoPersonajes();
+        ListadoPersonajes nes=new ListadoPersonajes("plantas");
         nes.setVisible(true);
         this.hide();
     }//GEN-LAST:event_jButton3ActionPerformed
