@@ -16,7 +16,7 @@ public class Plantas_VS_Zombis {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-      MenuJuego.lista1=new ListaJugador();
+      
         MenuJuego men =new MenuJuego();
       men.setVisible(true);
       

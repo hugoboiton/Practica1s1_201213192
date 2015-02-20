@@ -12,6 +12,7 @@ package plantas_vs_zombis;
 
 public class NuevoCampo extends javax.swing.JFrame {
 static ListaJugador lista1;
+
 NodoJugador aux;
     /**
      * Creates new form NuevoCampo

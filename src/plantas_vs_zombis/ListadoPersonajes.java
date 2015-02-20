@@ -6,7 +6,10 @@
 package plantas_vs_zombis;
 
 
+import java.awt.Desktop;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 
 /**
@@ -18,9 +21,14 @@ public class ListadoPersonajes extends javax.swing.JFrame {
     /**
      * Creates new form ListadoPersonajes
      */
-    int q=1;
+    int q;
     String a;
     String p="";
+    NodoPersonajes nodo;
+     public static ListaPersonajes catalogoP;
+     public static ListaPersonajes catalogoZ;
+     public static ListaJugador lista1;
+     
      public ListadoPersonajes() {
         initComponents();
         
@@ -62,6 +70,7 @@ public class ListadoPersonajes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jopAvisos = new javax.swing.JOptionPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -79,15 +88,38 @@ public class ListadoPersonajes extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        nomP = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Contenedor = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        nome = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        def = new javax.swing.JTextField();
+        buscarP = new javax.swing.JTextField();
+        tip = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        at = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
@@ -98,18 +130,22 @@ public class ListadoPersonajes extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 112, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Lista de personajes");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 11, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("Puntos de ataque");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("Puntos de Defensa");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -125,7 +161,9 @@ public class ListadoPersonajes extends javax.swing.JFrame {
             .addComponent(imagen, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
-        personajes.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 47, -1, -1));
+
+        personajes.setBackground(new java.awt.Color(153, 153, 153));
         personajes.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
         personajes.setForeground(new java.awt.Color(255, 0, 0));
         personajes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -134,121 +172,53 @@ public class ListadoPersonajes extends javax.swing.JFrame {
                 personajesActionPerformed(evt);
             }
         });
+        jPanel1.add(personajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 11, 135, -1));
+        jPanel1.add(Pataque, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, 100, -1));
+        jPanel1.add(ptdef, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 100, -1));
 
         jLabel4.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setText("Tipo de Ataque");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
 
         ataques.setBackground(new java.awt.Color(102, 102, 102));
         ataques.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
         ataques.setForeground(new java.awt.Color(225, 0, 0));
         ataques.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(ataques, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 100, -1));
 
         jLabel5.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("Imagen");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 155, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Nombre");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
         jLabel7.setText("Puntos Ataque");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
         jLabel8.setText("Puntos Defensa");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 0));
         jLabel9.setText("Tipo Ataque");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ptdef, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(personajes, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(145, 145, 145)
-                                .addComponent(jLabel8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(207, 207, 207)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Pataque, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(ataques, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel5)
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel6)
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabel7)))
-                .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(21, 21, 21))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(Pataque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ptdef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(ataques, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(personajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addGap(92, 92, 92))
-        );
+        jLabel18.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel18.setText("Nombre Personaje");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
+        jPanel1.add(nomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 150, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 210));
 
         Contenedor.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 51)));
 
@@ -265,48 +235,158 @@ public class ListadoPersonajes extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(Contenedor);
 
-        jMenu1.setText("File");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 913, 210));
+
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel10.setText("Eliminar Personaje");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+        jPanel3.add(nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 145, -1));
+
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 0, 0));
+        jButton2.setText("Eliminar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 174, -1));
+
+        jLabel11.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel11.setText("Nombre");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel12.setText("Modificar Personaje");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel13.setText("Puntos de defensa");
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel14.setText("Nombre Personaje");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel15.setText("Tipo de Ataque");
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, -1, -1));
+        jPanel3.add(def, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 60, -1));
+        jPanel3.add(buscarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 150, -1));
+        jPanel3.add(tip, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, 60, -1));
+
+        jLabel16.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel16.setText("Puntos de ataque");
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
+        jPanel3.add(at, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 60, -1));
+
+        jButton4.setBackground(new java.awt.Color(0, 0, 0));
+        jButton4.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 0, 0));
+        jButton4.setText("Buscar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, -1, -1));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jButton6.setText("Terminar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 80, -1, -1));
+
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 0, 0));
+        jButton3.setText("Actualizar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, -1, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 913, 170));
+
+        jMenu1.setText("Archivo");
+
+        jMenuItem1.setText("Graficar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Salir");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem2.setText("Salir");
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String a =Integer.toString(q);
-       String nom=(String)personajes.getSelectedItem();
-       System.out.println(nom);
-       String ataque=Pataque.getText();
-       String defen=ptdef.getText();
-       String tipo=(String)ataques.getSelectedItem();
-       
-       Panel y=new Panel(nom,ataque,defen,tipo,p);
+    
+    public  void llenarpanel(){
+       if(p.equals("Plantas")){
+        NodoPersonajes aux=catalogoP.primero;
+        
+        q=1;
+        while (aux!=null){
+        
+        Panel y=new Panel(aux.getNombre(),aux.getPutosAtque(),aux.getPuntosDefensa(),aux.getAtaque(),p,aux.getFoto());
        y.setBounds(10,10, 50, 50);
        Contenedor.add(y);
        Contenedor.setLayout(new GridLayout(q,1));
        Contenedor.updateUI();
        q++;
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+        aux=aux.siguiente;
+        }
+        
+       }else{
+        NodoPersonajes aux=catalogoZ.primero;
+        
+        q=1;
+        while (aux!=null){
+        
+        Panel y=new Panel(aux.getNombre(),aux.getPutosAtque(),aux.getPuntosDefensa(),aux.getAtaque(),p,aux.getFoto());
+       y.setBounds(10,10, 50, 50);
+       Contenedor.add(y);
+       Contenedor.setLayout(new GridLayout(q,1));
+       Contenedor.updateUI();
+       q++;
+        aux=aux.siguiente;
+       }
+       }
+    }
     private void personajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personajesActionPerformed
       String a= (String) personajes.getSelectedItem();
        String foto=a+".jpg";
@@ -317,6 +397,115 @@ public class ListadoPersonajes extends javax.swing.JFrame {
           imagen.setIcon(per);
     }//GEN-LAST:event_personajesActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      String nomp=nome.getText();
+      if(p.equals("Plantas")){
+      catalogoP.Eliminar(nomp);
+       jopAvisos.showMessageDialog(this, "Dato eliminado");
+      }else{
+        catalogoZ.Eliminar(nomp);
+         jopAvisos.showMessageDialog(this, "Dato Eliminado ");
+      }
+        Contenedor.removeAll();
+      llenarpanel();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+      
+        if(catalogoP!=null){
+        File ext = new File("re2.gif");                    
+        Graphviz g = catalogoP.Draw();
+        g.writeGraphToFile(g.getGraph(g.getDotSource(), "gif"), ext);
+          abrirarchivo("re2.gif"); 
+           jopAvisos.showMessageDialog(this, "Graficas hechas");
+        }else if(catalogoZ!=null){
+          
+            File ext1 = new File("re3.gif"); 
+          Graphviz g2 = catalogoZ.Draw();
+        g2.writeGraphToFile(g2.getGraph(g2.getDotSource(), "gif"), ext1);
+        
+      
+        abrirarchivo("re3.gif");
+         jopAvisos.showMessageDialog(this, "Graficas hechas");
+        } 
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String a =Integer.toString(q);
+        String per=(String)personajes.getSelectedItem();
+        String nom=nomP.getText();
+        System.out.println(nom);
+        String ataque=Pataque.getText();
+        String defen=ptdef.getText();
+        String tipo=(String)ataques.getSelectedItem();
+        String foto="src/ImajenesJuego/"+p+"/"+per+".jpg";
+        if (p.equals("Plantas")){      
+        catalogoP.insertar(nom, ataque, defen, tipo,per,foto);
+         jopAvisos.showMessageDialog(this, "Datos ingresado Exitosamente");
+        }
+        else{
+         catalogoZ.insertar(nom, ataque, defen, tipo,per,foto);
+          jopAvisos.showMessageDialog(this, "Datos ingresado Exitosamente");
+        }
+        Contenedor.removeAll();
+        llenarpanel();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String nombre=buscarP.getText();
+        if(p.equals("Plantas")){
+        nodo=catalogoP.Buscar(nombre);
+        }else{
+        nodo=catalogoZ.Buscar(nombre);
+        }
+        at.setText(Integer.toString(nodo.getPutosAtque()));
+        def.setText(Integer.toString(nodo.getPuntosDefensa()));
+        tip.setText(nodo.getAtaque());
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       String b1=at.getText();
+       String b2=def.getText();
+       String b3=tip.getText();
+       String nom=buscarP.getName();
+       
+       nodo.setAtaque(b3);
+       nodo.setPuntosDefensa(b2);
+       nodo.setPutosAtque(b1);
+       Contenedor.removeAll();
+        llenarpanel();
+       
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
+     catalogoP=CargarP.pla;
+     catalogoZ=CargarP.Zon;
+     lista1=CargarP.lista1;
+     CargarP p=new CargarP();
+     p.setVisible(true);
+     this.hide();
+     
+    }//GEN-LAST:event_jButton6ActionPerformed
+public void abrirarchivo(String archivo){
+
+     
+    try {
+
+            File objetofile = new File (archivo);
+            Desktop.getDesktop().open(objetofile);
+
+     }catch (IOException ex) {
+
+            System.out.println(ex);}
+}
     /**
      * @param args the command line arguments
      */
@@ -356,10 +545,25 @@ public class ListadoPersonajes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Contenedor;
     private javax.swing.JTextField Pataque;
+    private javax.swing.JTextField at;
     private javax.swing.JComboBox ataques;
+    private javax.swing.JTextField buscarP;
+    private javax.swing.JTextField def;
     private javax.swing.JLabel imagen;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -371,10 +575,17 @@ public class ListadoPersonajes extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JOptionPane jopAvisos;
+    private javax.swing.JTextField nomP;
+    private javax.swing.JTextField nome;
     private javax.swing.JComboBox personajes;
     private javax.swing.JTextField ptdef;
+    private javax.swing.JTextField tip;
     // End of variables declaration//GEN-END:variables
 }

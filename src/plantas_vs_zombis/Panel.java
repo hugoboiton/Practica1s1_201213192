@@ -21,16 +21,18 @@ public class Panel extends javax.swing.JPanel {
     String ptdef;
     String tipo;
     String p;
+    String foto;
     public Panel() {
         initComponents();
     }
-    public Panel(String a ,String b,String c,String d,String ima) {
+    public Panel(String a ,int b,int c,String d,String ima,String foto) {
         initComponents();
         this.nombre=a;
-        this.ptatque=b;
-        this.ptdef=c;
+        this.ptatque= Integer.toString(b);
+        this.ptdef=Integer.toString(c);
         this.tipo=d;
         this.p=ima;
+        this.foto=foto;
         
         ingreso();
     }
@@ -47,45 +49,33 @@ public class Panel extends javax.swing.JPanel {
         Nombre = new javax.swing.JLabel();
         pataque = new javax.swing.JLabel();
         pdefensa = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         ataque = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         img = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Nombre.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        Nombre.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         Nombre.setForeground(new java.awt.Color(255, 0, 0));
         Nombre.setText("Nombre");
+        add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
 
-        pataque.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        pataque.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         pataque.setForeground(new java.awt.Color(255, 0, 0));
         pataque.setText("Nombre");
+        add(pataque, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
 
-        pdefensa.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        pdefensa.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         pdefensa.setForeground(new java.awt.Color(255, 0, 0));
         pdefensa.setText("Nombre");
+        add(pdefensa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 0, 0));
-        jButton1.setText("Emilinar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 0, 0));
-        jButton2.setText("Modificar");
-
-        ataque.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        ataque.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         ataque.setForeground(new java.awt.Color(255, 0, 0));
         ataque.setText("Nombre");
+        add(ataque, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 51)));
@@ -94,52 +84,18 @@ public class Panel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(Nombre)
-                .addGap(84, 84, 84)
-                .addComponent(pataque)
-                .addGap(94, 94, 94)
-                .addComponent(pdefensa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(ataque)
-                .addGap(48, 48, 48)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Nombre)
-                            .addComponent(pataque)
-                            .addComponent(pdefensa)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(ataque)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 public void ingreso(){
     
@@ -148,23 +104,17 @@ public void ingreso(){
     pdefensa.setText(ptdef);
     ataque.setText(tipo);
     String a =nombre+".jpg";
-    
-     ImageIcon per = new ImageIcon("src/ImajenesJuego/"+p+"/"+a);
+    System.out.println(foto);
+     ImageIcon per = new ImageIcon(foto);
    
           img.setIcon(per);
     
 }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nombre;
     private javax.swing.JLabel ataque;
     private javax.swing.JLabel img;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel pataque;
     private javax.swing.JLabel pdefensa;

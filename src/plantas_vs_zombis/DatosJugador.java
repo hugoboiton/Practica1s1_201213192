@@ -15,6 +15,8 @@ public class DatosJugador extends javax.swing.JFrame {
      * Creates new form DatosJugador
      */
       public static ListaJugador lista1;
+       public static ListaPersonajes pla;
+       public static ListaPersonajes Zon;
       NodoJugador aux;
     String JugadorT;
     String NomJ;
@@ -146,6 +148,8 @@ public class DatosJugador extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         MenuJuego.lista1=lista1;
+        MenuJuego.pla=pla;
+        MenuJuego.Zon=Zon;
         MenuJuego m= new MenuJuego();
         m.setVisible(true);
         this.hide();

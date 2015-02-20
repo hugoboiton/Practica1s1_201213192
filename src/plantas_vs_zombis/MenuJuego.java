@@ -18,7 +18,10 @@ public class MenuJuego extends javax.swing.JFrame {
     /**
      * Creates new form MenuJuego
      */
-     public static ListaJugador lista1;
+     public static ListaJugador lista1=new ListaJugador();
+     public static ListaPersonajes pla =new ListaPersonajes();
+     public static ListaPersonajes Zon =new ListaPersonajes();
+     
              
     public MenuJuego() {
         initComponents();
@@ -101,6 +104,11 @@ public class MenuJuego extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Snap ITC", 1, 24)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 0, 0));
         jButton5.setText("Empesar Juego");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
 
         jButton6.setBackground(new java.awt.Color(0, 0, 0));
@@ -148,6 +156,8 @@ public class MenuJuego extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DatosJugador.lista1=lista1;
+        DatosJugador.pla=pla;
+        DatosJugador.Zon=Zon;
         DatosJugador p=new DatosJugador("Plantas","1");
         p.setVisible(true);
         this.hide();
@@ -182,16 +192,26 @@ public void abrirarchivo(String archivo){
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         DatosJugador.lista1=lista1;
+         DatosJugador.pla=pla;
+        DatosJugador.Zon=Zon;
         DatosJugador p=new DatosJugador("Zombies","1");
         p.setVisible(true);
         this.hide();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ListadoPersonajes nes=new ListadoPersonajes("plantas");
-        nes.setVisible(true);
-        this.hide();
+     
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+      CargarP.lista1=lista1;
+      CargarP.pla=pla;
+      CargarP.Zon=Zon;
+      CargarP p=new CargarP();
+      p.setVisible(true);
+      this.hide();
+      
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
