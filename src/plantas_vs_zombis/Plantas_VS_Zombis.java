@@ -19,7 +19,7 @@ public class Plantas_VS_Zombis {
       
         MenuJuego men =new MenuJuego();
       men.setVisible(true);
-      
     }
+   
     
 }

@@ -16,17 +16,19 @@ public class NodoPersonajes {
     private String Ataque;
     private String per;
     private String foto;
+    private int numero;
     NodoPersonajes siguiente;
     NodoPersonajes anterior;
     
     
-    public NodoPersonajes(String nom,String pa,String pd,String a,String per,String foto){
+    public NodoPersonajes(String nom,String pa,String pd,String a,String per,String foto,int numero){
    this. nombre=nom;
     this.PutosAtque=pa;
     this.PuntosDefensa=pd;
     this.Ataque=a;
     this.per=per;
     this.foto=foto;
+    this.numero=numero;
     siguiente=anterior=null;
     }
 
@@ -112,5 +114,19 @@ public class NodoPersonajes {
      */
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    /**
+     * @return the numero
+     */
+    public int getNumero() {
+        return numero;
+    }
+
+    /**
+     * @param numero the numero to set
+     */
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 }

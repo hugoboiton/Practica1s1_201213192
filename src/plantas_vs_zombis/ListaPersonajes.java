@@ -27,15 +27,17 @@ public class ListaPersonajes {
     public void insertar(String nombre,String pta,String pde,String tipo,String per ,String foto){
         
         if(Vacio()){
-        primero=ultimo=new NodoPersonajes(nombre,pta,pde,tipo,per,foto);
+            cantidad++;
+        primero=ultimo=new NodoPersonajes(nombre,pta,pde,tipo,per,foto,cantidad);
         
-        cantidad++;
+        
         }else{
+            cantidad++;
             NodoPersonajes aux;
             aux=ultimo;
-            ultimo=ultimo.siguiente=new NodoPersonajes(nombre,pta,pde,tipo,per,foto);
+            ultimo=ultimo.siguiente=new NodoPersonajes(nombre,pta,pde,tipo,per,foto,cantidad);
             ultimo.anterior=aux;
-          cantidad++;
+          
         }
           
     }
