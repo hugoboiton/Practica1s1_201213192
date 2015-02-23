@@ -6,25 +6,24 @@
 package plantas_vs_zombis;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import javax.swing.event.AncestorListener;
 
 /**
  *
  * @author HUGO
  */
-public class NodoMatriz extends JLabel   {
+public class NodoMatriz extends JButton  {
     
    NodoMatriz Siguiente;
    NodoMatriz Anterior;
    NodoMatriz Ariba;
    NodoMatriz Abajo;
+   JLabel label;
    int x;
    int y;
     public NodoMatriz(int x,int y){
@@ -34,20 +33,18 @@ public class NodoMatriz extends JLabel   {
     Abajo=null;
     this.x=x;
     this.y=y;
-    
-    this.setText(x+""+y);
-    this.setVerticalTextPosition(JLabel.BOTTOM);
-   Border border = LineBorder.createGrayLineBorder();
+   
+    this.setBounds(0, 0, 100, 100);
+    this.setBackground(Color.GREEN);
+    this.setLabel(x +""+y);
+    Border border = LineBorder.createBlackLineBorder();
     this.setBorder(border);
     
     }
-
-    
-
-   
-   
-    
-    
+public void ponerPersonaje (String per){
+           System.out.println(per);
+           ImageIcon perso = new ImageIcon(per);
+           this.setIcon(perso);
+}
  
-    
 }
