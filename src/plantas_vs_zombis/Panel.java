@@ -104,7 +104,7 @@ public void ingreso(){
     pdefensa.setText(ptdef);
     ataque.setText(tipo);
     String a =nombre+".jpg";
-    System.out.println(foto);
+    
      ImageIcon per = new ImageIcon(foto);
    
           img.setIcon(per);

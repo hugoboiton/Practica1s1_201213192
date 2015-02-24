@@ -16,7 +16,7 @@ public class CargarP extends javax.swing.JFrame {
      */
        public static ListaJugador lista1;
        public static ListaPersonajes pla;
-       public static ListaPersonajes Zon;
+       public static ListaPersonajes Zon ;
     public CargarP() {
         initComponents();
     }
@@ -161,9 +161,8 @@ public class CargarP extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
-        ListadoPersonajes.catalogoP=pla;
-        ListadoPersonajes.catalogoZ=Zon;
-        ListadoPersonajes.lista1=lista1;
+        ListadoPersonajes.catalogoP= pla= new ListaPersonajes();
+        
         ListadoPersonajes p= new ListadoPersonajes("plantas");
        
         p.setVisible(true);
@@ -171,9 +170,9 @@ public class CargarP extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       ListadoPersonajes.catalogoP=pla;
-        ListadoPersonajes.catalogoZ=Zon;
-        ListadoPersonajes.lista1=lista1;
+      
+        ListadoPersonajes.catalogoZ=Zon= new ListaPersonajes();;
+       
         ListadoPersonajes p= new ListadoPersonajes("zombies");
        
         p.setVisible(true);
@@ -185,6 +184,9 @@ public class CargarP extends javax.swing.JFrame {
     String Y=y.getText();
     
     if(X!=""&&Y!=""){
+    TableroJuego.pla=pla;
+    TableroJuego.Zon=Zon;
+    TableroJuego.lista1=lista1;
     TableroJuego juego=new TableroJuego(X,Y);
     juego.setVisible(true);
     this.hide();

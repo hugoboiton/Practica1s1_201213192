@@ -5,8 +5,12 @@
  */
 package plantas_vs_zombis;
 
+import java.awt.Desktop;
 import java.awt.GridLayout;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.ImageIcon;
 import javax.swing.event.AncestorListener;
 
 
@@ -30,6 +34,18 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
     NodoMatriz colum2;
     String planta;
     String zombeis;
+    NodoPersonajes PlantaJuego;
+    NodoPersonajes ZombieJuego;
+    public boolean issuspended = false;
+    int  segp = 0, dsp = 0,mp =0;
+    int  segz = 0, dsz = 0,mz =0;
+     public static ListaJugador lista1;
+    public static ListaPersonajes pla;
+    public static ListaPersonajes Zon;
+    public static Pila pila  =new Pila();
+    public static Cola cola  =new Cola();
+    int tamañolp=pla.tamaño();
+    int tamañolz=Zon.tamaño();
     public TableroJuego() {
         initComponents();
     }
@@ -44,9 +60,9 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
         insertar();
         Tablero.setLayout(new GridLayout(x,y));
         int a=0;  
-       Tablero.updateUI();
+        Tablero.updateUI();
+        llenarInicioPersonajes();
     }
-  
     public Boolean VacioPn(){
     return colum2==null&&fila2==null;
     }
@@ -125,7 +141,143 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
         
         
     }
+    Thread hiloCrearPlantas = new Thread() {
+ 
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    if (dsp == 99) {
+                        dsp = 0;
+                        segp++;
+                    }
+                    
+                    dsp++;
 
+                   System.out.println( segp + ":" + dsp);
+
+                    hiloCrearPlantas.sleep(100);
+                
+            if(segp==5){
+                System.out.println("creo un nuevo personaje Planta");
+                 segp=0;
+                llenarPlantas();
+            
+                }
+             
+                }
+                
+            } catch (java.lang.InterruptedException ie) {
+                System.out.println(ie.getMessage());
+       
+            }
+        
+        }
+      
+    };
+    Thread hiloCrearZombies = new Thread() {
+ 
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    if (dsz == 99) {
+                        dsz = 0;
+                        segz++;
+                    }
+                   
+                    
+                    dsz++;
+
+                   System.out.println( segz + ":" + dsz);
+
+                    hiloCrearPlantas.sleep(100);
+                
+            if(segz==5){
+                System.out.println("creo un nuevo personaje Zombie");
+                 segz=0;
+        
+            llenarZombies();
+       
+
+                    }
+             
+                }
+                
+            } catch (java.lang.InterruptedException ie) {
+                System.out.println(ie.getMessage());
+       
+            }
+        
+        }
+      
+    };
+    public void llenarPlantas(){
+      
+        int  s = 1+ new Double(Math.random() * tamañolp).intValue();
+        NodoPersonajes plantaale=pla.BuscarAleatorio(s);
+        if (plantaale!=null){
+          cola.enqueue(plantaale);
+        NodoPersonajes tem1=cola.primero;
+       int t=1;
+       Ppla.removeAll();
+       while(tem1!=null){
+        String foto =tem1.getFoto();
+        Pilazom dibujopila1=new Pilazom(foto);
+       Ppla.add(dibujopila1);
+       Ppla.setLayout(new GridLayout(t,0));
+       t++;
+        tem1=tem1.siguiente;  
+      }
+        }else{
+        
+         System.out.println("malos "+s);
+        }
+        
+      
+    }
+    public void llenarZombies(){
+        
+       int x =1+ new Double(Math.random() *tamañolz).intValue();
+       NodoPersonajes zombialeatorio=Zon.BuscarAleatorio(x);
+      if (zombialeatorio!=null){
+       pila.Push(zombialeatorio);
+       NodoPersonajes tem=pila.primero;
+       int t=1;
+       Pzom.removeAll();
+       while(tem!=null){
+       String foto =tem.getFoto();
+       System.out.println(foto);
+       Pilazom dibujopila=new Pilazom(foto);
+       Pzom.add(dibujopila);
+       Pzom.setLayout(new GridLayout(t,0));
+       t++;
+       tem= tem.anterior;
+       }
+      }else{
+      System.out.println("malos "+x);
+       }
+    }
+    public void llenarInicioPersonajes(){
+   
+    System.out.println(tamañolp);
+    System.out.println(tamañolz);
+    for (int i=0;i<5;i++){
+   llenarPlantas();
+   llenarZombies();
+    }
+    
+    hiloCrearPlantas.start();
+    hiloCrearZombies.start();
+    PlantaJuego=cola.dequeue();
+    ZombieJuego=pila.Pop();
+    llenarPlantas();
+    llenarZombies();
+       ImageIcon p = new ImageIcon(PlantaJuego.getFoto());
+       ImageIcon z = new ImageIcon(ZombieJuego.getFoto());
+    Bplanta.setIcon(p);
+    Bzombies.setIcon(z);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,14 +291,20 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
         Bplanta = new javax.swing.JButton();
         Bzombies = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
+        Ppla = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jPanel3 = new javax.swing.JPanel();
+        Pzom = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tablero = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,36 +320,41 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
 
         Bzombies.setBackground(new java.awt.Color(0, 0, 0));
         Bzombies.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImajenesJuego/Zombies/z2.jpg"))); // NOI18N
+        Bzombies.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BzombiesActionPerformed(evt);
+            }
+        });
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        Ppla.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout PplaLayout = new javax.swing.GroupLayout(Ppla);
+        Ppla.setLayout(PplaLayout);
+        PplaLayout.setHorizontalGroup(
+            PplaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        PplaLayout.setVerticalGroup(
+            PplaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 499, Short.MAX_VALUE)
         );
 
-        jScrollPane4.setViewportView(jPanel2);
+        jScrollPane4.setViewportView(Ppla);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        Pzom.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout PzomLayout = new javax.swing.GroupLayout(Pzom);
+        Pzom.setLayout(PzomLayout);
+        PzomLayout.setHorizontalGroup(
+            PzomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        PzomLayout.setVerticalGroup(
+            PzomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 499, Short.MAX_VALUE)
         );
 
-        jScrollPane5.setViewportView(jPanel3);
+        jScrollPane5.setViewportView(Pzom);
 
         Tablero.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 51, 0), 5, true));
 
@@ -242,10 +405,55 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("File");
+        jMenu1.setText("Archivo");
+
+        jMenuItem2.setText("Graficar cola");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem4.setText("Graficar Pila");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem3.setText("Graficar Matriz");
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem5.setText("Graficar Personajes");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem6.setText("Graficar Jugadores");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Salir");
+
+        jMenuItem1.setText("Salir");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -265,9 +473,131 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
     }// </editor-fold>//GEN-END:initComponents
 
     private void BplantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BplantaActionPerformed
-      planta="src/ImajenesJuego/Zombies/z3.jpg";
+      planta=PlantaJuego.getFoto();
+       PlantaJuego=cola.dequeue();
+        ImageIcon p = new ImageIcon(PlantaJuego.getFoto());
+        Bplanta.setIcon(p);
+       llenarp();
+        Ppla.updateUI();
     }//GEN-LAST:event_BplantaActionPerformed
 
+    private void BzombiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BzombiesActionPerformed
+         planta=ZombieJuego.getFoto();
+          ZombieJuego=pila.Pop();
+          ImageIcon z = new ImageIcon(ZombieJuego.getFoto());
+          Bzombies.setIcon(z);
+         llenarz();
+         Pzom.updateUI();
+    }//GEN-LAST:event_BzombiesActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+      File ext2 = new File("cola.gif"); 
+          Graphviz g3 = cola.Draw();
+        g3.writeGraphToFile(g3.getGraph(g3.getDotSource(), "gif"), ext2);
+        
+       try {
+
+            File objetofile = new File ("cola.gif");
+            Desktop.getDesktop().open(objetofile);
+
+     }catch (IOException ex) {
+
+            System.out.println(ex);}
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+         File ext1 = new File("pila.gif"); 
+          Graphviz g2 = pila.Draw();
+        g2.writeGraphToFile(g2.getGraph(g2.getDotSource(), "gif"), ext1);
+        
+       try {
+
+            File objetofile = new File ("pila.gif");
+            Desktop.getDesktop().open(objetofile);
+
+     }catch (IOException ex) {
+
+            System.out.println(ex);}
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+       graficarLP();
+       graficarLZ();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+      File ext = new File("juga.gif");                    
+        Graphviz g = lista1.Draw();
+        g.writeGraphToFile(g.getGraph(g.getDotSource(), "gif"), ext);
+         try {
+
+            File objetofile = new File ("juga.gif");
+            Desktop.getDesktop().open(objetofile);
+
+     }catch (IOException ex) {
+
+            System.out.println(ex);}
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    public void graficarLP(){
+     File ext = new File("Lpp.gif");                    
+        Graphviz g = pla.Draw();
+        g.writeGraphToFile(g.getGraph(g.getDotSource(), "gif"), ext);
+        try {
+
+            File objetofile = new File ("Lpp.gif");
+            Desktop.getDesktop().open(objetofile);
+
+     }catch (IOException ex) {
+
+            System.out.println(ex);}
+                                         
+    }
+    public void graficarLZ(){
+      File ext1 = new File("Lpz.gif"); 
+          Graphviz g2 = Zon.Draw();
+        g2.writeGraphToFile(g2.getGraph(g2.getDotSource(), "gif"), ext1);
+        try {
+
+            File objetofile = new File ("Lpz.gif");
+            Desktop.getDesktop().open(objetofile);
+
+     }catch (IOException ex) {
+
+            System.out.println(ex);}
+        
+    }
+    public void llenarz(){
+     NodoPersonajes tem=pila.primero;
+       int t=1;
+       Pzom.removeAll();
+       while(tem!=null){
+       String foto =tem.getFoto();
+       System.out.println(foto);
+       Pilazom dibujopila=new Pilazom(foto);
+       Pzom.add(dibujopila);
+       Pzom.setLayout(new GridLayout(t,0));
+       t++;
+       tem= tem.anterior;
+      
+       }
+    }
+    public void llenarp(){
+     NodoPersonajes tem1=cola.primero;
+       int t=1;
+       Ppla.removeAll();
+       while(tem1!=null){
+        String foto =tem1.getFoto();
+        Pilazom dibujopila1=new Pilazom(foto);
+       Ppla.add(dibujopila1);
+       Ppla.setLayout(new GridLayout(t,0));
+       t++;
+        tem1=tem1.siguiente;  
+      }
+    }
     /**
      * @param args the command line arguments
      */
@@ -306,12 +636,18 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Bplanta;
     private javax.swing.JButton Bzombies;
+    private javax.swing.JPanel Ppla;
+    private javax.swing.JPanel Pzom;
     private javax.swing.JPanel Tablero;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;

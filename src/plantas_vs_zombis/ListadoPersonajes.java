@@ -390,7 +390,7 @@ public class ListadoPersonajes extends javax.swing.JFrame {
     private void personajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personajesActionPerformed
       String a= (String) personajes.getSelectedItem();
        String foto=a+".jpg";
-      System.out.println("src/ImajenesJuego/"+p+"/"+foto);
+     
     
        ImageIcon per = new ImageIcon("src/ImajenesJuego/"+p+"/"+foto);
    
@@ -434,17 +434,19 @@ public class ListadoPersonajes extends javax.swing.JFrame {
         String a =Integer.toString(q);
         String per=(String)personajes.getSelectedItem();
         String nom=nomP.getText();
-        System.out.println(nom);
+       
         String ataque=Pataque.getText();
         String defen=ptdef.getText();
         String tipo=(String)ataques.getSelectedItem();
         String foto="src/ImajenesJuego/"+p+"/"+per+".jpg";
         if (p.equals("Plantas")){      
         catalogoP.insertar(nom, ataque, defen, tipo,per,foto);
+        System.out.println(catalogoP.tamaño());
          jopAvisos.showMessageDialog(this, "Datos ingresado Exitosamente");
         }
         else{
          catalogoZ.insertar(nom, ataque, defen, tipo,per,foto);
+         System.out.println(catalogoZ.tamaño());
           jopAvisos.showMessageDialog(this, "Datos ingresado Exitosamente");
         }
         Contenedor.removeAll();
@@ -486,9 +488,9 @@ public class ListadoPersonajes extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-     catalogoP=CargarP.pla;
-     catalogoZ=CargarP.Zon;
-     lista1=CargarP.lista1;
+     CargarP.pla=catalogoP;
+    CargarP.Zon=catalogoZ;
+    CargarP.lista1=lista1;
      CargarP p=new CargarP();
      p.setVisible(true);
      this.hide();

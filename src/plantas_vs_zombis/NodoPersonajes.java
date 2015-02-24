@@ -31,7 +31,17 @@ public class NodoPersonajes {
     this.numero=numero;
     siguiente=anterior=null;
     }
-
+    public NodoPersonajes(NodoPersonajes nodo){
+        this.nombre=nodo.getNombre();
+        this.PutosAtque=Integer.toString(nodo.getPutosAtque());
+        this.PuntosDefensa=Integer.toString(nodo.getPuntosDefensa());
+        this.Ataque=nodo.getAtaque();
+        this.per=nodo.getPer();
+        this.foto=nodo.getFoto();
+        this.numero=nodo.getNumero();
+        siguiente=anterior=null;
+    
+    }
     /**
      * @return the nombre
      */

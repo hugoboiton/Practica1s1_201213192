@@ -19,8 +19,8 @@ public class MenuJuego extends javax.swing.JFrame {
      * Creates new form MenuJuego
      */
      public static ListaJugador lista1=new ListaJugador();
-     public static ListaPersonajes pla =new ListaPersonajes();
-     public static ListaPersonajes Zon =new ListaPersonajes();
+     //public static ListaPersonajes pla =new ListaPersonajes();
+    // public static ListaPersonajes Zon =new ListaPersonajes();
      
              
     public MenuJuego() {
@@ -156,8 +156,8 @@ public class MenuJuego extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DatosJugador.lista1=lista1;
-        DatosJugador.pla=pla;
-        DatosJugador.Zon=Zon;
+       // DatosJugador.pla=pla;
+        //DatosJugador.Zon=Zon;
         DatosJugador p=new DatosJugador("Plantas","1");
         p.setVisible(true);
         this.hide();
@@ -192,8 +192,8 @@ public void abrirarchivo(String archivo){
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         DatosJugador.lista1=lista1;
-         DatosJugador.pla=pla;
-        DatosJugador.Zon=Zon;
+        // DatosJugador.pla=pla;
+       // DatosJugador.Zon=Zon;
         DatosJugador p=new DatosJugador("Zombies","1");
         p.setVisible(true);
         this.hide();
@@ -205,8 +205,7 @@ public void abrirarchivo(String archivo){
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
       CargarP.lista1=lista1;
-      CargarP.pla=pla;
-      CargarP.Zon=Zon;
+     
       CargarP p=new CargarP();
       p.setVisible(true);
       this.hide();

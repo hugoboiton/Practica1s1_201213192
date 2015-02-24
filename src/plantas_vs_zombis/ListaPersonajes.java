@@ -117,4 +117,20 @@ public class ListaPersonajes {
         
         return g;
     }
+       public NodoPersonajes BuscarAleatorio(int num){
+     NodoPersonajes temp;
+     temp=primero;
+     while(temp!=null){
+     
+     if (temp.getNumero()==num){
+        NodoPersonajes encontra= new  NodoPersonajes(temp);
+            
+        return encontra;
+     }else{
+     temp=temp.siguiente;
+     }
+       
+     }
+       return null;
+     }
 }
