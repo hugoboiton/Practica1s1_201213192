@@ -99,15 +99,20 @@ public class ListaPersonajes {
         g.addln(g.start_graph());
         g.addln("rankdir = LR;");
         NodoPersonajes n = primero;
+        int m=1;
+        String b=Integer.toOctalString(m); 
         String c=primero.getNombre();
-        g.add(""+c);
-      
+        g.add(""+c+b);
+        System.out.println(b+"[label\""+c+"\"]");
+       m++;
         n= primero.siguiente;
         while (n!=null){
-          
-          g.add("->"+n.getNombre());
+          b=Integer.toOctalString(m); 
+          c=n.getNombre();
+          g.add("->"+c+b);
+          System.out.println("->"+b+"[label\""+c+"\"]");
           n=  n.siguiente;
-      
+         m++;
         }
                
        

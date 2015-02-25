@@ -75,15 +75,21 @@ public class ListaJugador {
         g.add(""+c);
         NodoDatosJugador aux=primero.apuntadorJugadorDatos.primero;
         String b=aux.getNombreCampo();
-        g.add("->"+b);
-       aux= aux.Siguiente;
+        int z=1;
+        String x=Integer.toHexString(z);
+        g.add("->"+b+x);
+        aux= aux.Siguiente;
+        z++;
         while (aux!=null){
             b=aux.getNombreCampo();
-       g.add(" ->"+b);
+            x=Integer.toHexString(z);
+       g.add(" ->"+b+x);
         aux=  aux.Siguiente;
+        z++;
        }
        g.add(";"+c);
-        
+        z=1;
+        x=Integer.toHexString(z);
         n = primero.siguiente;
         while(n!= null)
         {
@@ -93,13 +99,18 @@ public class ListaJugador {
             if(aux!=null){
         
          b=aux.getNombreCampo();
-         g.add("->"+b);
+         g.add("->"+b+x);
          aux= aux.Siguiente;
+         z++;
         while (aux!=null){
-            b=aux.getNombreCampo();
-       g.add(" ->"+b);
-        aux=  aux.Siguiente;
+          x=Integer.toHexString(z);
+          b=aux.getNombreCampo();
+          g.add(" ->"+b+x);
+          z++;
+          aux=  aux.Siguiente;
        }
+        z=1;
+        x=Integer.toHexString(z);
        g.add(";"+c);
             }
             n = n.siguiente;

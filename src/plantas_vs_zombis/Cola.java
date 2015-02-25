@@ -12,7 +12,7 @@ package plantas_vs_zombis;
 public class Cola {
     NodoPersonajes primero;
     NodoPersonajes ultimo;
-    int cantidad;
+    private int cantidad;
     
     public Cola(){
     primero=ultimo=null;
@@ -26,6 +26,7 @@ public class Cola {
     if(ColaVacia()){
         cantidad++;
     primero=ultimo=nodo;
+    
     }else{
     ultimo=ultimo.siguiente=nodo;
     cantidad++;
@@ -39,11 +40,11 @@ public class Cola {
     actual=primero;
     if (primero==ultimo){
     primero=ultimo=null;
-    
+    cantidad=   getCantidad()-1;
     }
     else{
     primero=primero.siguiente;
-    
+    cantidad=   getCantidad()-1;
     }
     }
     return actual;
@@ -54,15 +55,19 @@ public class Cola {
         g.addln(g.start_graph());
         g.addln("rankdir = LR;");
         NodoPersonajes n = primero;
+         int m=1;
+         String b=Integer.toOctalString(m); 
         String c=primero.getNombre();
-        g.add(""+c);
+        g.add(""+c+b);
       
         n= primero.siguiente;
+        m++;
         while (n!=null){
-          
-          g.add("->"+n.getNombre());
+           b=Integer.toOctalString(m); 
+          c=n.getNombre();
+          g.add("->"+c+b);
           n= n.siguiente;
-      
+          m++;
         }
                
        
@@ -71,6 +76,13 @@ public class Cola {
         g.addln(g.end_graph());
         
         return g;
+    }
+
+    /**
+     * @return the cantidad
+     */
+    public int getCantidad() {
+        return cantidad;
     }
     
 }

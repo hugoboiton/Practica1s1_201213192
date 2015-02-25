@@ -23,6 +23,7 @@ public class NodoMatriz extends JButton  {
    NodoMatriz Anterior;
    NodoMatriz Ariba;
    NodoMatriz Abajo;
+   ListasNodoMatriz listadenodo;
    JLabel label;
    int x;
    int y;
@@ -33,7 +34,7 @@ public class NodoMatriz extends JButton  {
     Abajo=null;
     this.x=x;
     this.y=y;
-   
+    listadenodo=new ListasNodoMatriz();
     this.setBounds(0, 0, 100, 100);
     this.setBackground(Color.GREEN);
     this.setLabel(x +""+y);
@@ -45,6 +46,10 @@ public void ponerPersonaje (String per){
            System.out.println(per);
            ImageIcon perso = new ImageIcon(per);
            this.setIcon(perso);
+}
+public void ArgregarPersonaje (NodoPersonajes nodo){
+ listadenodo.insertar(nodo);
+ System.out.println(listadenodo.tamano());
 }
  
 }

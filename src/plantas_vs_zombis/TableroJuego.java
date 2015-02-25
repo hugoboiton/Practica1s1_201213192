@@ -36,10 +36,11 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
     String zombeis;
     NodoPersonajes PlantaJuego;
     NodoPersonajes ZombieJuego;
-    public boolean issuspended = false;
+    NodoPersonajes EnJuego;
+    public boolean ganoP;
     int  segp = 0, dsp = 0,mp =0;
     int  segz = 0, dsz = 0,mz =0;
-     public static ListaJugador lista1;
+    public static ListaJugador lista1;
     public static ListaPersonajes pla;
     public static ListaPersonajes Zon;
     public static Pila pila  =new Pila();
@@ -122,11 +123,20 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
         while(aux1!=null){
         while(aux2!=null){
         if (e.getSource()==aux2) {
-         System.out.println("boton");
+         if(EnJuego!=null){
+          System.out.println("boton");
          System.out.println(aux2.x+""+aux2.y);
          aux2.setLabel("");
          aux2.ponerPersonaje(planta);
+         aux2.ArgregarPersonaje(EnJuego);
          encontro=true;
+         planta="";
+         EnJuego=null;
+         }else{
+          jopAvisos.showMessageDialog(this, "no hay nada en juego");
+         
+         }
+        
          break;
         
         }else{aux2=aux2.Siguiente;}   
@@ -164,7 +174,10 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
                 llenarPlantas();
             
                 }
-             
+              if(cola.getCantidad()==0){
+                  ganoP=false;
+                  FinJuego();
+              }
                 }
                 
             } catch (java.lang.InterruptedException ie) {
@@ -201,6 +214,10 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
        
 
                     }
+            if (pila.getCantidad()==0){
+            ganoP=true;
+            FinJuego();
+            }
              
                 }
                 
@@ -212,6 +229,27 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
         }
       
     };
+    public void FinJuego(){
+    
+        if(ganoP==true){
+        jopAvisos.showMessageDialog(this, "Jugador Plantas GANO FELICIDADES");
+        hiloCrearPlantas.suspend();
+        hiloCrearZombies.suspend();
+        Bplanta.setVisible(false);
+        Bzombies.setEnabled(false);
+        panelj.removeAll();
+        panelj.updateUI();
+        }else{
+        jopAvisos.showMessageDialog(this, "Jugador Zonbies GANO FELICIDADES");
+        hiloCrearPlantas.stop();
+        hiloCrearZombies.stop();
+        Bplanta.setEnabled(false);
+        Bzombies.setEnabled(false);
+        panelj.updateUI();
+        panelj.removeAll();
+        }
+    
+    }
     public void llenarPlantas(){
       
         int  s = 1+ new Double(Math.random() * tamañolp).intValue();
@@ -287,7 +325,8 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel5 = new javax.swing.JPanel();
+        jopAvisos = new javax.swing.JOptionPane();
+        panelj = new javax.swing.JPanel();
         Bplanta = new javax.swing.JButton();
         Bzombies = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -308,7 +347,7 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel5.setBackground(new java.awt.Color(51, 0, 0));
+        panelj.setBackground(new java.awt.Color(51, 0, 0));
 
         Bplanta.setBackground(new java.awt.Color(0, 0, 0));
         Bplanta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImajenesJuego/Zombies/z2.jpg"))); // NOI18N
@@ -371,35 +410,35 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
 
         jScrollPane1.setViewportView(Tablero);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        javax.swing.GroupLayout paneljLayout = new javax.swing.GroupLayout(panelj);
+        panelj.setLayout(paneljLayout);
+        paneljLayout.setHorizontalGroup(
+            paneljLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneljLayout.createSequentialGroup()
+                .addGroup(paneljLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Bplanta, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(paneljLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Bzombies, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(paneljLayout.createSequentialGroup()
                         .addComponent(jScrollPane5)
                         .addGap(1, 1, 1))))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        paneljLayout.setVerticalGroup(
+            paneljLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneljLayout.createSequentialGroup()
+                .addGroup(paneljLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Bzombies, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Bplanta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paneljLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(paneljLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -462,19 +501,20 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BplantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BplantaActionPerformed
-      planta=PlantaJuego.getFoto();
-       PlantaJuego=cola.dequeue();
+       EnJuego=PlantaJuego;
+        planta=PlantaJuego.getFoto();
+       EnJuego= PlantaJuego=cola.dequeue();
         ImageIcon p = new ImageIcon(PlantaJuego.getFoto());
         Bplanta.setIcon(p);
        llenarp();
@@ -482,7 +522,8 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
     }//GEN-LAST:event_BplantaActionPerformed
 
     private void BzombiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BzombiesActionPerformed
-         planta=ZombieJuego.getFoto();
+          EnJuego=ZombieJuego;
+          planta=ZombieJuego.getFoto();
           ZombieJuego=pila.Pop();
           ImageIcon z = new ImageIcon(ZombieJuego.getFoto());
           Bzombies.setIcon(z);
@@ -648,10 +689,11 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JOptionPane jopAvisos;
+    private javax.swing.JPanel panelj;
     // End of variables declaration//GEN-END:variables
 
    

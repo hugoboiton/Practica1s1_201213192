@@ -29,6 +29,7 @@ public class Pila {
         
         if(ultimo==primero){
         primero=ultimo=null;
+        cantidad=cantidad-1;
         } else{
         NodoPersonajes actual=primero;
         while(actual.anterior!=ultimo){
@@ -37,7 +38,7 @@ public class Pila {
         }
         ultimo=actual;
         actual.anterior=null;
-        
+         cantidad=cantidad-1;
         }
         }
        return info;
@@ -59,15 +60,18 @@ public class Pila {
         g.addln(g.start_graph());
         g.addln("rankdir = LR;");
         NodoPersonajes n = primero;
+        int m=1;
+         String b=Integer.toOctalString(m); 
         String c=primero.getNombre();
-        g.add(""+c);
-      
+        g.add(""+c+b);
+      m++;
         n= primero.anterior;
         while (n!=null){
-          
-          g.add("->"+n.getNombre());
+           b=Integer.toOctalString(m); 
+          c=n.getNombre();
+          g.add("->"+c+b);
           n= n.anterior;
-      
+         m++;
         }
                
        
