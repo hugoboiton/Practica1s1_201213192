@@ -37,7 +37,7 @@ public class NodoMatriz extends JButton  {
     listadenodo=new ListasNodoMatriz();
     this.setBounds(0, 0, 100, 100);
     this.setBackground(Color.GREEN);
-    this.setLabel(x +""+y);
+   
     Border border = LineBorder.createBlackLineBorder();
     this.setBorder(border);
     
@@ -46,6 +46,7 @@ public void ponerPersonaje (String per){
            System.out.println(per);
            ImageIcon perso = new ImageIcon(per);
            this.setIcon(perso);
+           System.out.println(x+" "+y);
 }
 public void ArgregarPersonaje (NodoPersonajes nodo){
  listadenodo.insertar(nodo);

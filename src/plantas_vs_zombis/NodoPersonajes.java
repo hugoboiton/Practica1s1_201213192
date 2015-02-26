@@ -5,23 +5,31 @@
  */
 package plantas_vs_zombis;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author HUGO
  */
-public class NodoPersonajes {
+public class NodoPersonajes extends Thread{
     private String nombre;
     private String PutosAtque;
     private String PuntosDefensa;
     private String Ataque;
     private String per;
     private String foto;
+    private String personaje;
     private int numero;
     NodoPersonajes siguiente;
     NodoPersonajes anterior;
-    
-    
-    public NodoPersonajes(String nom,String pa,String pd,String a,String per,String foto,int numero){
+    NodoPersonajes yo;
+    NodoMatriz nodo;
+    int  segp = 0, dsp = 0,mp =0;
+    String op="1";
+     
+    Thread t = new Thread();
+     Thread t2 = new Thread();
+    public NodoPersonajes(String nom,String pa,String pd,String a,String per,String foto,int numero,String peo){
    this. nombre=nom;
     this.PutosAtque=pa;
     this.PuntosDefensa=pd;
@@ -29,6 +37,7 @@ public class NodoPersonajes {
     this.per=per;
     this.foto=foto;
     this.numero=numero;
+    this.personaje=peo;
     siguiente=anterior=null;
     }
     public NodoPersonajes(NodoPersonajes nodo){
@@ -39,8 +48,9 @@ public class NodoPersonajes {
         this.per=nodo.getPer();
         this.foto=nodo.getFoto();
         this.numero=nodo.getNumero();
+        this.personaje=nodo.personaje;
         siguiente=anterior=null;
-    
+     this.yo=nodo;
     }
     /**
      * @return the nombre
@@ -139,4 +149,91 @@ public class NodoPersonajes {
     public void setNumero(int numero) {
         this.numero = numero;
     }
+    public void NodoMatriz(NodoMatriz nodo){
+    this.nodo=nodo;
+   
+    }
+     
+ 
+        @Override
+        public void run() {
+                    
+            while(true){
+            try{
+                t.sleep(1000);
+           
+            
+               
+                 dsp=0;
+                 if(personaje.equals("Zombies")){
+                   if(nodo.Anterior!=null){
+                   nodo.ponerPersonaje("");
+                  nodo=nodo.Anterior;
+                  nodo.ArgregarPersonaje(yo);
+                  String foto =yo.getFoto();
+                  nodo.ponerPersonaje(foto);
+                  }
+                  
+                 }
+                
+                 if(personaje.equals("Plantas")){
+                 if(nodo.Siguiente!=null){
+                   if(Ataque.equals("Directo")){
+                   nodo.ponerPersonaje("");
+                  nodo=nodo.Siguiente;
+                  nodo.ArgregarPersonaje(yo);
+                  String foto =yo.getFoto();
+                  nodo.ponerPersonaje(foto);
+                  }   else{
+                 
+                   if(op.equals("1")){
+                   nodo=nodo.Siguiente;
+                 String foto ="src/ImajenesJuego/Plantas/p10.jpg";
+                  nodo.ponerPersonaje(foto);
+                  op="55";
+                   }else {
+                    nodo.ponerPersonaje("");   
+                    nodo=nodo.Siguiente;
+                 String foto ="src/ImajenesJuego/Plantas/p10.jpg";
+                  nodo.ponerPersonaje(foto);
+                   }   
+                 
+                  }
+                 }
+                         
+                                
+                 }
+                 
+             }
+            catch (java.lang.InterruptedException ie) {
+                System.out.println(ie.getMessage());
+       
+            }
+            
+             try {
+            t.sleep(50);
+        } catch (InterruptedException ie) {
+              System.out.println(ie.getMessage());
+        }
+            }
+                
+            
+        
+        }
+
+    /**
+     * @return the personaje
+     */
+    public String getPersonaje() {
+        return personaje;
+    }
+
+    /**
+     * @param personaje the personaje to set
+     */
+    public void setPersonaje(String personaje) {
+        this.personaje = personaje;
+    }
+      
+   
 }

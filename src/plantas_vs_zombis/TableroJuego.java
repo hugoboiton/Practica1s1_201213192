@@ -86,16 +86,19 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
       Tablero.add(colum2);
      }else{
          if(j==0){
-     colum2= fila2=new NodoMatriz(i,j);
+          colum2= fila2=new NodoMatriz(i,j);
          colum2.Ariba=fila1;
          fila1.Abajo=colum2;
+         
          colum2.setBounds(35+(100*j), 20+(100*i), 100, 100);
          colum2.addActionListener(this);
          Tablero.add(colum2);
    
          }else{
+          NodoMatriz aux=colum2;    
          fila1=fila1.Siguiente;
          colum2=colum2.Siguiente=new NodoMatriz(i,j);
+          colum2.Anterior=aux;
          colum2.Ariba=fila1;
          fila1.Abajo=colum2;
          colum2.setBounds(35+(100*j), 20+(100*i), 100, 100);
@@ -129,9 +132,13 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
          aux2.setLabel("");
          aux2.ponerPersonaje(planta);
          aux2.ArgregarPersonaje(EnJuego);
+         NodoPersonajes p=EnJuego;
+         Thread t= new Thread(p);
+         EnJuego.NodoMatriz(aux2);
          encontro=true;
          planta="";
          EnJuego=null;
+         t.start();
          }else{
           jopAvisos.showMessageDialog(this, "no hay nada en juego");
          
@@ -151,6 +158,7 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
         
         
     }
+   
     Thread hiloCrearPlantas = new Thread() {
  
         @Override
@@ -164,12 +172,12 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
                     
                     dsp++;
 
-                   System.out.println( segp + ":" + dsp);
+                  
 
                     hiloCrearPlantas.sleep(100);
                 
             if(segp==5){
-                System.out.println("creo un nuevo personaje Planta");
+               
                  segp=0;
                 llenarPlantas();
             
@@ -202,12 +210,12 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
                     
                     dsz++;
 
-                   System.out.println( segz + ":" + dsz);
+                   
 
                     hiloCrearPlantas.sleep(100);
                 
             if(segz==5){
-                System.out.println("creo un nuevo personaje Zombie");
+                
                  segz=0;
         
             llenarZombies();
@@ -512,9 +520,9 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
     }// </editor-fold>//GEN-END:initComponents
 
     private void BplantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BplantaActionPerformed
-       EnJuego=PlantaJuego;
+        EnJuego=PlantaJuego;
         planta=PlantaJuego.getFoto();
-       EnJuego= PlantaJuego=cola.dequeue();
+       PlantaJuego=cola.dequeue();
         ImageIcon p = new ImageIcon(PlantaJuego.getFoto());
         Bplanta.setIcon(p);
        llenarp();
@@ -523,8 +531,8 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
 
     private void BzombiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BzombiesActionPerformed
           EnJuego=ZombieJuego;
-          planta=ZombieJuego.getFoto();
-          ZombieJuego=pila.Pop();
+           planta=ZombieJuego.getFoto();
+           ZombieJuego=pila.Pop();
           ImageIcon z = new ImageIcon(ZombieJuego.getFoto());
           Bzombies.setIcon(z);
          llenarz();

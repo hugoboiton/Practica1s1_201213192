@@ -440,12 +440,12 @@ public class ListadoPersonajes extends javax.swing.JFrame {
         String tipo=(String)ataques.getSelectedItem();
         String foto="src/ImajenesJuego/"+p+"/"+per+".jpg";
         if (p.equals("Plantas")){      
-        catalogoP.insertar(nom, ataque, defen, tipo,per,foto);
+        catalogoP.insertar(nom, ataque, defen, tipo,per,foto,"Plantas");
         System.out.println(catalogoP.tamaño());
          jopAvisos.showMessageDialog(this, "Datos ingresado Exitosamente");
         }
         else{
-         catalogoZ.insertar(nom, ataque, defen, tipo,per,foto);
+         catalogoZ.insertar(nom, ataque, defen, tipo,per,foto,"Zombies");
          System.out.println(catalogoZ.tamaño());
           jopAvisos.showMessageDialog(this, "Datos ingresado Exitosamente");
         }

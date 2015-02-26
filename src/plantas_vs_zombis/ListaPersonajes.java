@@ -24,18 +24,18 @@ public class ListaPersonajes {
     
     }
     
-    public void insertar(String nombre,String pta,String pde,String tipo,String per ,String foto){
+    public void insertar(String nombre,String pta,String pde,String tipo,String per ,String foto,String peo){
         
         if(Vacio()){
             cantidad++;
-        primero=ultimo=new NodoPersonajes(nombre,pta,pde,tipo,per,foto,cantidad);
+        primero=ultimo=new NodoPersonajes(nombre,pta,pde,tipo,per,foto,cantidad,peo);
         
         
         }else{
             cantidad++;
             NodoPersonajes aux;
             aux=ultimo;
-            ultimo=ultimo.siguiente=new NodoPersonajes(nombre,pta,pde,tipo,per,foto,cantidad);
+            ultimo=ultimo.siguiente=new NodoPersonajes(nombre,pta,pde,tipo,per,foto,cantidad,peo);
             ultimo.anterior=aux;
           
         }
