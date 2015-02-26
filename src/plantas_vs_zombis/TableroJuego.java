@@ -93,7 +93,6 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
          colum2.setBounds(35+(100*j), 20+(100*i), 100, 100);
          colum2.addActionListener(this);
          Tablero.add(colum2);
-   
          }else{
           NodoMatriz aux=colum2;    
          fila1=fila1.Siguiente;
@@ -471,6 +470,11 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
         jMenu1.add(jMenuItem4);
 
         jMenuItem3.setText("Graficar Matriz");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem5.setText("Graficar Personajes");
@@ -591,6 +595,20 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
 
             System.out.println(ex);}
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       File ext = new File("matriz.gif");                    
+        Graphviz g = this.Draw();
+        g.writeGraphToFile(g.getGraph(g.getDotSource(), "gif"), ext);
+         try {
+
+            File objetofile = new File ("matriz.gif");
+            Desktop.getDesktop().open(objetofile);
+
+     }catch (IOException ex) {
+
+            System.out.println(ex);}
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
     public void graficarLP(){
      File ext = new File("Lpp.gif");                    
         Graphviz g = pla.Draw();
@@ -646,6 +664,80 @@ public class TableroJuego extends javax.swing.JFrame implements ActionListener  
        t++;
         tem1=tem1.siguiente;  
       }
+    }
+     public Graphviz Draw()
+    {
+        Graphviz g = new Graphviz();
+        g.addln(g.start_graph());
+        g.addln("rankdir = LR;");
+        NodoMatriz n =colum1;
+        NodoMatriz n2,n3=null;
+        n2=n;
+        
+       String c=n.nombreP();
+       
+       g.add(""+c);
+       String a=c;
+        n2= n2.Siguiente;
+        while (n!=null){
+          if(n3!=null){
+          c=n3.nombreP();
+          g.add(";"+c);
+         
+           n2=n2.Siguiente;
+           
+          }  
+          while(n2!=null){
+          String c2=n2.nombreP();
+          g.add("->"+c2);
+          
+          
+          n2=n2.Siguiente;
+          
+         }
+          
+          n=n.Abajo;
+          n3=n2=n;
+         
+          //g.add(";");         
+        }
+       
+        NodoMatriz n4 =colum1;
+        NodoMatriz n5,n6=null;
+         n5=n4;
+        
+       String  c1=n4.nombreP();
+       g.add(";"+c1);
+       
+        n5= n5.Abajo;
+        while (n4!=null){
+          if(n6!=null){
+          c1=n6.nombreP();
+          g.add(";"+c1);
+         
+           n5=n5.Abajo;
+           
+          }  
+          while(n5!=null){
+          String c2=n5.nombreP();
+          g.add("->"+c2);
+          
+          
+          n5=n5.Abajo;
+          
+         }
+          
+          n4=n4.Siguiente;
+          n6=n5=n4;
+         
+          //g.add(";");         
+        }       
+       
+        g.add(";");        
+        
+        g.addln(g.end_graph());
+        
+        return g;
     }
     /**
      * @param args the command line arguments

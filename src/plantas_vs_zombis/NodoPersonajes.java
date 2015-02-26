@@ -24,6 +24,7 @@ public class NodoPersonajes extends Thread{
     NodoPersonajes anterior;
     NodoPersonajes yo;
     NodoMatriz nodo;
+    NodoMatriz n;
     int  segp = 0, dsp = 0,mp =0;
     String op="1";
      
@@ -151,7 +152,7 @@ public class NodoPersonajes extends Thread{
     }
     public void NodoMatriz(NodoMatriz nodo){
     this.nodo=nodo;
-   
+   this.n=nodo;
     }
      
  
@@ -166,39 +167,67 @@ public class NodoPersonajes extends Thread{
                
                  dsp=0;
                  if(personaje.equals("Zombies")){
+                   
                    if(nodo.Anterior!=null){
+                   if(Ataque.equals("Directo")){
                    nodo.ponerPersonaje("");
                   nodo=nodo.Anterior;
                   nodo.ArgregarPersonaje(yo);
                   String foto =yo.getFoto();
                   nodo.ponerPersonaje(foto);
-                  }
+                  }else{
+                   if(op.equals("1")&&!"".equals(nodo.getFoto())){
+                  nodo=nodo.Anterior;
+                  String foto ="src/ImajenesJuego/Plantas/p10.jpg";
+                  nodo.ponerPersonaje(foto);
+                  op="55";
+                  }else if(!"".equals(nodo.getFoto())) {
+                  nodo.ponerPersonaje("");   
+                  nodo=nodo.Anterior;
+                  String foto ="src/ImajenesJuego/Plantas/p10.jpg";
+                  nodo.ponerPersonaje(foto);
+                   }   
+                   }
+                                         
+                  }else{
+                   nodo.ponerPersonaje(""); 
+                   if(Ataque.equals("Disparo")){
+                   nodo=n;
+                   op="1";
+                   }
+                   }
                   
                  }
                 
                  if(personaje.equals("Plantas")){
                  if(nodo.Siguiente!=null){
-                   if(Ataque.equals("Directo")){
+                  if(Ataque.equals("Directo")){
                    nodo.ponerPersonaje("");
                   nodo=nodo.Siguiente;
                   nodo.ArgregarPersonaje(yo);
                   String foto =yo.getFoto();
                   nodo.ponerPersonaje(foto);
-                  }   else{
-                 
-                   if(op.equals("1")){
-                   nodo=nodo.Siguiente;
-                 String foto ="src/ImajenesJuego/Plantas/p10.jpg";
+                  }else{                 
+                  if(op.equals("1")&&!"".equals(nodo.getFoto())){
+                  nodo=nodo.Siguiente;
+                  String foto ="src/ImajenesJuego/Plantas/p10.jpg";
                   nodo.ponerPersonaje(foto);
                   op="55";
-                   }else {
-                    nodo.ponerPersonaje("");   
-                    nodo=nodo.Siguiente;
-                 String foto ="src/ImajenesJuego/Plantas/p10.jpg";
+                  }else if(!"".equals(nodo.getFoto())) {
+                  nodo.ponerPersonaje("");   
+                  nodo=nodo.Siguiente;
+                  String foto ="src/ImajenesJuego/Plantas/p10.jpg";
                   nodo.ponerPersonaje(foto);
+                  
                    }   
                  
                   }
+                 }else{
+                   nodo.ponerPersonaje(""); 
+                   if(Ataque.equals("Disparo")){
+                   nodo=n;
+                   op="1";
+                   }
                  }
                          
                                 

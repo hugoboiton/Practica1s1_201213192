@@ -103,14 +103,14 @@ public class ListaPersonajes {
         String b=Integer.toOctalString(m); 
         String c=primero.getNombre();
         g.add(""+c+b);
-        System.out.println(b+"[label\""+c+"\"]");
+        
        m++;
         n= primero.siguiente;
         while (n!=null){
           b=Integer.toOctalString(m); 
           c=n.getNombre();
           g.add("->"+c+b);
-          System.out.println("->"+b+"[label\""+c+"\"]");
+          
           n=  n.siguiente;
          m++;
         }

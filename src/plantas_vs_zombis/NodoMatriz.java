@@ -25,6 +25,7 @@ public class NodoMatriz extends JButton  {
    NodoMatriz Abajo;
    ListasNodoMatriz listadenodo;
    JLabel label;
+   private String foto="";
    int x;
    int y;
     public NodoMatriz(int x,int y){
@@ -47,10 +48,29 @@ public void ponerPersonaje (String per){
            ImageIcon perso = new ImageIcon(per);
            this.setIcon(perso);
            System.out.println(x+" "+y);
+           this.foto=per;
 }
 public void ArgregarPersonaje (NodoPersonajes nodo){
  listadenodo.insertar(nodo);
  System.out.println(listadenodo.tamano());
 }
+public String nombreP(){
+String nom=Integer.toString(x)+Integer.toString(y);
+return nom;
+}
+
+    /**
+     * @return the foto
+     */
+    public String getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto the foto to set
+     */
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
  
 }

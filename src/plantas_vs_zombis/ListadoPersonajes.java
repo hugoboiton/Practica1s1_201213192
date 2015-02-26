@@ -418,7 +418,8 @@ public class ListadoPersonajes extends javax.swing.JFrame {
         g.writeGraphToFile(g.getGraph(g.getDotSource(), "gif"), ext);
           abrirarchivo("re2.gif"); 
            jopAvisos.showMessageDialog(this, "Graficas hechas");
-        }else if(catalogoZ!=null){
+        } 
+        if(catalogoZ!=null){
           
             File ext1 = new File("re3.gif"); 
           Graphviz g2 = catalogoZ.Draw();
